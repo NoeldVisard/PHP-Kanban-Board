@@ -3,7 +3,120 @@
 {% block title %}Hello BoardController!{% endblock %}
 
 {% block body %}
-<div>
-
+<div class="container">
 </div>
+
+<div class="container">
+    <div class="kanban-heading">
+        <strong class="kanban-heading-text">Kanban Board</strong>
+    </div>
+    <div class="kanban-board">
+        {% for board in boards %}
+            <div class="kanban-block {{ board.name }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>{{ board.name }}</strong>
+                {% if loop.first %}
+                    <div class="task-button-block">
+                        <button id="task-button">Create new task</button>
+                    </div>
+                {% endif %}
+{#                Examples of tasks#}
+                <div class="task" id="task1{{ board.name }}" draggable="true" ondragstart="drag(event)">
+                    <span>Task 1 {{ board.name }}</span>
+                </div>
+                <div class="task" id="task2{{ board.name }}" draggable="true" ondragstart="drag(event)">
+                    <span>Task 2 {{ board.name }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.currentTarget.appendChild(document.getElementById(data));
+    }
+</script>
+<style>
+    .container {
+        width: 70%;
+        min-width: 50%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .kanban-heading {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-family: sans-serif;
+    }
+
+    .kanban-heading-text {
+        font-size: 1.8rem;
+        background-color: tomato;
+        padding: 0.8rem 1.7rem;
+        border-radius: 0.5rem;
+        margin: 1rem;
+    }
+
+    .kanban-board {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-family: sans-serif;
+    }
+
+    .kanban-block {
+        padding: 0.6rem;
+        width: 30.5%;
+        min-width: 14rem;
+        min-height: 4.5rem;
+        border-radius: 0.3rem;
+    }
+
+    .Unassigned {
+        background-color: #fec6d1;
+    }
+
+    .In {
+        background-color: #ffaf00;
+    }
+
+    .Completed {
+        background-color: #018b01;
+    }
+
+    body {
+        background-color: black;
+    }
+
+    .task {
+        background-color: white;
+        margin: 0.2rem 0rem 0.3rem 0rem;
+        border: 0.1rem solid black;
+        border-radius: 0.2rem;
+        padding: 0.5rem 0.2rem 0.5rem 2rem;
+    }
+
+    #task-button {
+        margin: 0.2rem 0rem 0.1rem 0rem;
+        background-color: white;
+        border-radius: 0.2rem;
+        width: 100%;
+        border: 0.25rem solid black;
+        padding: 0.5rem 2.7rem;
+        border-radius: 0.3rem;
+        font-size: 1rem;
+    }
+</style>
 {% endblock %}

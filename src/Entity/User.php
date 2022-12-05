@@ -40,7 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
     }
 
-
     public function getId(): ?int
     {
         return $this->id;
