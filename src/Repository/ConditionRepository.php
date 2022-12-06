@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Board;
+use App\Entity\Condition;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Board>
+ * @extends ServiceEntityRepository<Condition>
  *
- * @method Board|null find($id, $lockMode = null, $lockVersion = null)
- * @method Board|null findOneBy(array $criteria, array $orderBy = null)
- * @method Board[]    findAll()
- * @method Board[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Condition|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Condition|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Condition[]    findAll()
+ * @method Condition[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BoardRepository extends ServiceEntityRepository
+class ConditionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Board::class);
+        parent::__construct($registry, Condition::class);
     }
 
-    public function save(Board $entity, bool $flush = false): void
+    public function save(Condition $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class BoardRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Board $entity, bool $flush = false): void
+    public function remove(Condition $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

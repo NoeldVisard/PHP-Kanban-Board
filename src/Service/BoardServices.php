@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Board;
+use App\Entity\Condition;
 use Doctrine\ORM\EntityManagerInterface;
 
 class BoardServices extends AbstractService
@@ -14,7 +14,7 @@ class BoardServices extends AbstractService
 
     public function getAllBoards()
     {
-        return $this->entityManager->getRepository(Board::class)->findAll();
+        return $this->entityManager->getRepository(Condition::class)->findAll();
     }
     
 }

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\BoardRepository;
+use App\Repository\ConditionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: BoardRepository::class)]
-class Board
+#[ORM\Entity(repositoryClass: ConditionRepository::class)]
+class Condition
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
