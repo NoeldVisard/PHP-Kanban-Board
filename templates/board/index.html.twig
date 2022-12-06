@@ -88,12 +88,6 @@
 
     function saveTask(){
         const taskName = document.getElementById("task-name").value;
-        // var todo = document.getElementById("todo");
-        // todo.innerHTML += `
-        //     <div class="task" id="${taskName.toLowerCase().split(" ").join("")}" draggable="true" ondragstart="drag(event)">
-        //         <span>${taskName}</span>
-        //     </div>
-        //     `
         const taskDescription = document.getElementById("task-description").value;
         const taskUrgency = document.getElementById("task-urgency").value;
         const taskDeadline = document.getElementById("task-deadline").value;
@@ -108,7 +102,20 @@
             taskUrgency: taskUrgency,
             taskDeadline: taskDeadline
         }));
-        xhr.onload = () => alert(xhr.response);
+        xhr.onload = () => {
+            document.getElementById("task-name").value = '';
+            document.getElementById("task-description").value = '';
+            document.getElementById("task-urgency").value = 'low';
+            document.getElementById("task-deadline").value = '';
+
+            const todo = document.getElementById("Unassigned");
+            todo.innerHTML += `
+                <div class="task" id="${taskName.toLowerCase().split(" ").join("")}" draggable="true" ondragstart="drag(event)">
+                    <span>${taskName}</span>
+                </div>
+                `
+            createTask();
+        }
 
     }
 </script>
