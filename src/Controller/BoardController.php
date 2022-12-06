@@ -7,7 +7,6 @@ use App\Service\TaskServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\VarDumper\VarDumper;
 
 class BoardController extends AbstractController
 {
@@ -17,7 +16,6 @@ class BoardController extends AbstractController
         $boardTypes = $boardServices->getAllBoards();
         $tasks = $taskServices->getTasksByUserId($this->getUser()->getId());
         return $this->render('board/index.html.twig', [
-            'controller_name' => 'CoursesController',
             'boards' => $boardTypes,
             'tasks' => $tasks,
         ]);

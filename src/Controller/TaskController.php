@@ -7,8 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\VarDumper\VarDumper;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 
 class TaskController extends AbstractController
 {
@@ -37,9 +35,7 @@ class TaskController extends AbstractController
             $parameters["taskDeadline"]
         );
         $taskServices->saveTask($newTask);
-        return $this->render('task/index.html.twig', [
-            'controller_name' => 'TaskController',
-        ]);
+        return new Response('Task added');
     }
 
 

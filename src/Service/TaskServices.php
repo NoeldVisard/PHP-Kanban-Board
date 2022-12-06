@@ -3,10 +3,8 @@
 namespace App\Service;
 
 use App\Entity\Task;
-use Cassandra\Date;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\VarDumper\VarDumper;
 
 class TaskServices extends AbstractService
 {
