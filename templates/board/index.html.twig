@@ -16,13 +16,13 @@
                         <button id="task-button" onclick="createTask()">Create new task</button>
                     </div>
                 {% endif %}
-{#                Examples of tasks#}
-                <div class="task" id="task1{{ board.name }}" draggable="true" ondragstart="drag(event)">
-                    <span>Task 1 {{ board.name }}</span>
-                </div>
-                <div class="task" id="task2{{ board.name }}" draggable="true" ondragstart="drag(event)">
-                    <span>Task 2 {{ board.name }}</span>
-                </div>
+                {% if tasks[loop.index] is defined %}
+                    {% for task in tasks[loop.index] %}
+                        <div class="task" id="task-{{ task.name }}" draggable="true" ondragstart="drag(event)">
+                            <span>{{ task.name }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         {% endfor %}
         <div class="create-new-task-block" id="create-new-task-block">

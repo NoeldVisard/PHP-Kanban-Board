@@ -39,6 +39,19 @@ class TaskRepository extends ServiceEntityRepository
         }
     }
 
+    public function getAllTasksByUserId(int $userId)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT t.name, t.conditionId
+            FROM App\Entity\Task t
+            WHERE t.userId = :userId'
+        )->setParameter('userId', $userId);
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Task[] Returns an array of Task objects
 //     */

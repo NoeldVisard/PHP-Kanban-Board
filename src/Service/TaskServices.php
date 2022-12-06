@@ -31,4 +31,13 @@ class TaskServices extends AbstractService
     {
         $this->entityManager->getRepository(Task::class)->save($task, true);
     }
+
+    public function getTasksByUserId(int $userId): array
+    {
+        $allTasks = $this->entityManager->getRepository(Task::class)->getAllTasksByUserId($userId);
+        foreach ($allTasks as $task) {
+            $tasks[$task["conditionId"]][] = $task;
+        }
+        return $tasks;
+    }
 }
