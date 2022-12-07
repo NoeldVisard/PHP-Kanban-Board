@@ -44,7 +44,7 @@ class TaskRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT t.name, t.conditionId
+            'SELECT t.id, t.name, t.conditionId
             FROM App\Entity\Task t
             WHERE t.userId = :userId'
         )->setParameter('userId', $userId);

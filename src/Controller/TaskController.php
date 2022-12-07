@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\VarDumper\VarDumper;
 
 class TaskController extends AbstractController
 {
@@ -38,5 +39,16 @@ class TaskController extends AbstractController
         return new Response('Task added');
     }
 
+    #[Route('/task/delete', name: 'app_task')]
+    public function deleteTask(
+        Request $request,
+        TaskServices $taskServices,
+    )
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $parameters = json_decode($request->getContent(), true);
+        $taskServices->deleteTaskById($parameters["taskId"]);
+        return new Response('Task deleted');
+    }
 
 }

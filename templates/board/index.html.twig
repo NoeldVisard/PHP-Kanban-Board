@@ -18,7 +18,7 @@
                 {% endif %}
                 {% if tasks[loop.index] is defined %}
                     {% for task in tasks[loop.index] %}
-                        <div class="task" id="task-{{ task.name }}" draggable="true" ondragstart="drag(event)">
+                        <div class="task" id="task-{{ task.name }}" draggable="true" ondragstart="drag(event)" onclick="remove({{ task.id }}, '{{ task.name }}')">
                             <span>{{ task.name }}</span>
                         </div>
                     {% endfor %}
@@ -117,6 +117,21 @@
             createTask();
         }
 
+    }
+
+    function remove(taskId, taskName) {
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.open("POST", "http://127.0.0.1:8000/task/delete", true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        xhr.send(JSON.stringify({
+            taskId: taskId,
+        }));
+        xhr.onload = () => {
+            const taskElem = document.getElementById(`task-${taskName}`);
+            console.log(taskElem.innerText)
+            taskElem.parentNode.removeChild(taskElem)
+        }
     }
 </script>
 <style>
