@@ -19,7 +19,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/task/add', name: 'app_task')]
+    #[Route('/task/add', name: 'app_task_add')]
     public function addTask(
         Request $request,
         TaskServices $taskServices,
