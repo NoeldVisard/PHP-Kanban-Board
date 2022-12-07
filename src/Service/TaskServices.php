@@ -38,4 +38,11 @@ class TaskServices extends AbstractService
         }
         return $tasks;
     }
+
+    public function deleteTaskById(int $id): void
+    {
+        $taskRepository = $this->entityManager->getRepository(Task::class);
+        $task = $taskRepository->find($id);
+        $taskRepository->remove($task, true);
+    }
 }
