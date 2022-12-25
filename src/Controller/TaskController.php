@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\TaskServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +37,7 @@ class TaskController extends AbstractController
             $parameters["taskDeadline"]
         );
         $taskServices->saveTask($newTask);
-        return new Response('Task added');
+        return new JsonResponse(array('id' => $newTask->getId(), 'name' => $newTask->getName()));
     }
 
     #[Route('/task/delete', name: 'app_task')]

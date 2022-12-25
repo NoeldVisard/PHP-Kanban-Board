@@ -18,7 +18,7 @@
                 {% endif %}
                 {% if tasks[loop.index] is defined %}
                     {% for task in tasks[loop.index] %}
-                        <div class="task" id="task-{{ task.name }}" draggable="true" ondragstart="drag(event)" onclick="remove({{ task.id }}, '{{ task.name }}')">
+                        <div class="task" id="task-{{ task.id }}" draggable="true" ondragstart="drag(event)" onclick="remove({{ task.id }}, '{{ task.name }}')">
                             <span>{{ task.name }}</span>
                         </div>
                     {% endfor %}
@@ -108,10 +108,12 @@
             document.getElementById("task-urgency").value = 'low';
             document.getElementById("task-deadline").value = '';
 
+            const newTask = JSON.parse(xhr.response);
+
             const todo = document.getElementById("Unassigned");
             todo.innerHTML += `
-                <div class="task" id="${taskName.toLowerCase().split(" ").join("")}" draggable="true" ondragstart="drag(event)">
-                    <span>${taskName}</span>
+                <div class="task" id="task-${newTask.id}" draggable="true" ondragstart="drag(event)" onclick="remove(${newTask.id}, '${newTask.name}')">
+                    <span>${newTask.name}</span>
                 </div>
                 `
             createTask();
@@ -128,7 +130,7 @@
             taskId: taskId,
         }));
         xhr.onload = () => {
-            const taskElem = document.getElementById(`task-${taskName}`);
+            const taskElem = document.getElementById(`task-${taskId}`);
             console.log(taskElem.innerText)
             taskElem.parentNode.removeChild(taskElem)
         }
