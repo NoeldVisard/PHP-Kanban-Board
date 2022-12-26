@@ -5,6 +5,9 @@
 {% block body %}
 <div class="container">
     <div class="kanban-heading">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="http://127.0.0.1:8000/board/edit" class="kanban-heading-text--admin-edit">Edit conditions</a>
+        {% endif %}
         <strong class="kanban-heading-text">Kanban Board</strong>
     </div>
     <div class="kanban-board">
@@ -154,6 +157,14 @@
 
     .kanban-heading-text {
         font-size: 1.8rem;
+        background-color: tomato;
+        padding: 0.8rem 1.7rem;
+        border-radius: 0.5rem;
+        margin: 1rem;
+    }
+
+    .kanban-heading-text--admin-edit {
+        font-size: 0.8rem;
         background-color: tomato;
         padding: 0.8rem 1.7rem;
         border-radius: 0.5rem;
