@@ -29,4 +29,9 @@ class UserServices extends AbstractService
     {
         $this->entityManager->getRepository(User::class)->save($user, true);
     }
+
+    public function getUserByEmail(string $email): User
+    {
+        return $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+    }
 }
