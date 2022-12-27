@@ -19,7 +19,7 @@ class BoardController extends AbstractController
     public function index(BoardServices $boardServices, TaskServices $taskServices): Response
     {
         $allConditions = $boardServices->getAllConditions();
-        $tasks = $taskServices->getTasksByUserId($this->getUser()->getId());
+        $tasks = $taskServices->getAllTasks();
         return $this->render('board/index.html.twig', [
             'conditions' => $allConditions,
             'tasks' => $tasks,

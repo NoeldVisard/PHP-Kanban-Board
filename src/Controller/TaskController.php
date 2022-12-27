@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Task;
+use App\Service\ConditionServices;
 use App\Service\TaskServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -50,6 +52,20 @@ class TaskController extends AbstractController
         $parameters = json_decode($request->getContent(), true);
         $taskServices->deleteTaskById($parameters["taskId"]);
         return new Response('Task deleted');
+    }
+
+    #[Route('task/change-condition', name: 'app_task_change_condition')]
+    public function changeTaskCondition(
+        Request $request,
+        TaskServices $taskServices,
+        ConditionServices $conditionServices
+    ) {
+        $parameters = json_decode($request->getContent(), true);
+        $task = $taskServices->getTaskById((int) $parameters["taskId"]);
+        $conditionId = $conditionServices->getConditionByName($parameters["conditionName"])->getId();
+        $task->setConditionId($conditionId);
+        $taskServices->saveTask($task);
+        return new Response('Changed task condition');
     }
 
 }

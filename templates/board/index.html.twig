@@ -19,8 +19,8 @@
                         <button id="task-button" onclick="createTask()">Create new task</button>
                     </div>
                 {% endif %}
-                {% if tasks[loop.index] is defined %}
-                    {% for task in tasks[loop.index] %}
+                {% if tasks[condition.id] is defined %}
+                    {% for task in tasks[condition.id] %}
                         <div class="task" id="task-{{ task.id }}" draggable="true" ondragstart="drag(event)" onclick="remove({{ task.id }}, '{{ task.name }}')">
                             <span>{{ task.name }}</span>
                         </div>
@@ -72,6 +72,14 @@
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.currentTarget.appendChild(document.getElementById(data));
+        const conditionName = ev.target.id;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://127.0.0.1:8000/task/change-condition", true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        xhr.send(JSON.stringify({
+            conditionName: conditionName,
+            taskId: document.getElementById(data).id.split('-')[1]
+        }));
     }
 
     function createTask(){

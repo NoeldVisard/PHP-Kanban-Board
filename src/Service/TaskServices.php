@@ -46,4 +46,19 @@ class TaskServices extends AbstractService
         $task = $taskRepository->find($id);
         $taskRepository->remove($task, true);
     }
+
+    public function getTaskById(int $id)
+    {
+        return $this->entityManager->getRepository(Task::class)->find($id);
+    }
+
+    public function getAllTasks()
+    {
+        $allTasks = $this->entityManager->getRepository(Task::class)->findAll();
+        $tasks = [];
+        foreach ($allTasks as $task) {
+            $tasks[$task->getConditionId()][] = $task;
+        }
+        return $tasks;
+    }
 }
