@@ -16,6 +16,15 @@ class Condition
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    /**
+     * @param string|null $name
+     */
+    public function __construct(?string $name)
+    {
+        $this->name = $name;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

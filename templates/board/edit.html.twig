@@ -9,7 +9,7 @@
         </div>
         <div class="kanban-board" id="all-conditions">
             {% for board in boards %}
-                <div class="kanban-block {{ board.name }}" id="{{ board.name }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="kanban-block kanban-block-{{ loop.index }} {{ board.name }}" id="{{ board.name }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <strong>{{ board.name }}</strong>
                 </div>
             {% endfor %}
@@ -42,8 +42,8 @@
                 const newCondition = JSON.parse(xhr.response);
                 const conditions = document.querySelector('#all-conditions');
                 conditions.innerHTML += `
-                    <div class="kanban-block ${conditions.name}" id="${conditions.name}">
-                        <strong>${conditions.name}</strong>
+                    <div class="kanban-block kanban-block-${conditions.children.length + 1} ${newCondition.name}" id="${newCondition.name}">
+                        <strong>${newCondition.name}</strong>
                     </div>
                 `;
             }
@@ -106,6 +106,22 @@
 
         .Completed {
             background-color: #018b01;
+        }
+
+        .kanban-block-4 {
+            background-color: #8b3101;
+        }
+
+        .kanban-block-5 {
+            background-color: #018b6b;
+        }
+
+        .kanban-block-6 {
+            background-color: #8b0154;
+        }
+
+        .kanban-block-6 {
+            background-color: #018b46;
         }
 
         body {

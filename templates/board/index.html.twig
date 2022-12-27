@@ -12,7 +12,7 @@
     </div>
     <div class="kanban-board">
         {% for board in boards %}
-            <div class="kanban-block {{ board.name }}" id="{{ board.name }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="kanban-block kanban-block-{{ board.id }} {{ board.name }}" id="{{ board.name }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <strong>{{ board.name }}</strong>
                 {% if loop.first %}
                     <div class="task-button-block">
@@ -196,6 +196,22 @@
 
     .Completed {
         background-color: #018b01;
+    }
+
+    .kanban-block-4 {
+        background-color: #8b3101;
+    }
+
+    .kanban-block5 {
+        background-color: #018b6b;
+    }
+
+    .kanban-block6 {
+        background-color: #8b0154;
+    }
+
+    .kanban-block6 {
+        background-color: #018b46;
     }
 
     body {

@@ -16,5 +16,10 @@ class BoardServices extends AbstractService
     {
         return $this->entityManager->getRepository(Condition::class)->findAll();
     }
+
+    public function saveCondition(Condition $newCondition): void
+    {
+        $this->entityManager->getRepository(Condition::class)->save($newCondition, true);
+    }
     
 }
