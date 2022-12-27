@@ -12,8 +12,8 @@
 
 <div class="welcome-top">
 	<span class="right">
-        <a href="http://127.0.0.1:8000/welcome/registation-page">
-                <strong>Регистрация</strong>
+        <a href="http://127.0.0.1:8000/welcome">
+                <strong>Авторизация</strong>
             </a>
         </span>
     <div class="clr"></div>
@@ -21,17 +21,17 @@
 {% if error.messageKey is defined %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-<form action="{{ path('app_welcome') }}" method="post" id="form" name="form">
+<form action="http://127.0.0.1:8000/welcome/register" method="post" id="form" name="form">
     <div id="block">
         <label id="user" for="name">@</label>
-        <input type="text" name="_username" id="name" placeholder="Логин" value="{{ last_username|default('') }}"/>
+        <input type="text" name="email" id="name" placeholder="Логин" value="{{ last_username|default('') }}"/>
         <label id="pass" for="password">*</label>
-        <input type="password" name="_password" id="password" placeholder="Пароль"  />
+        <input type="password" name="password" id="password" placeholder="Пароль"  />
         <input type="submit" id="submit" name="submit" value="➟"/>
     </div>
 </form>
 <div id="option">
-    <p>Авторизация</p>
+    <p>Регистрация</p>
 </div>
 </body>
 </html>

@@ -32,7 +32,13 @@ class WelcomeController extends AbstractController
     {
         $newUser = $userServices->createUser($_POST, $userPasswordHasher);
         $userServices->saveUser($newUser);
-        return $this->render('welcome/index.html.twig');
+        return $this->render('welcome/login.html.twig');
+    }
+
+    #[Route('/welcome/registation-page', name: 'welcome_registration_page')]
+    public function registrationPage()
+    {
+        return $this->render('welcome/registration.html.twig');
     }
 
 }
