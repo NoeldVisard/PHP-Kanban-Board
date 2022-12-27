@@ -17,7 +17,7 @@ class WelcomeController extends AbstractController
     {
         $error = $authUtils->getLastAuthenticationError();
         $lastUsername = $authUtils->getLastUsername();
-        return $this->render('welcome/index.html.twig', [
+        return $this->render('welcome/login.html.twig', [
             'controller_name' => 'WelcomeController',
             'last_username' => $lastUsername,
             'error' => $error,
