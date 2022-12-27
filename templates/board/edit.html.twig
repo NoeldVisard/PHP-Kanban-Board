@@ -32,6 +32,7 @@
     <script>
         function saveCondition() {
             const conditionName = document.getElementById("condition-name").value;
+            document.getElementById("condition-name").value = '';
 
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "http://127.0.0.1:8000/board/add", true);
