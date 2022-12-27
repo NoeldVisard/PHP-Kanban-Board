@@ -12,7 +12,7 @@ class BoardServices extends AbstractService
         parent::__construct($entityManager);
     }
 
-    public function getAllBoards()
+    public function getAllConditions()
     {
         return $this->entityManager->getRepository(Condition::class)->findAll();
     }

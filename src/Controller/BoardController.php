@@ -18,10 +18,10 @@ class BoardController extends AbstractController
     #[Route('/board', name: 'app_board')]
     public function index(BoardServices $boardServices, TaskServices $taskServices): Response
     {
-        $boardTypes = $boardServices->getAllBoards();
+        $allConditions = $boardServices->getAllConditions();
         $tasks = $taskServices->getTasksByUserId($this->getUser()->getId());
         return $this->render('board/index.html.twig', [
-            'boards' => $boardTypes,
+            'conditions' => $allConditions,
             'tasks' => $tasks,
         ]);
     }
@@ -29,9 +29,9 @@ class BoardController extends AbstractController
     #[Route('/board/edit')]
     public function addConditionPage(BoardServices $boardServices)
     {
-        $boardTypes = $boardServices->getAllBoards();
+        $boardTypes = $boardServices->getAllConditions();
         return $this->render('board/edit.html.twig', [
-            'boards' => $boardTypes,
+            'conditions' => $boardTypes,
         ]);
     }
 
