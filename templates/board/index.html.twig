@@ -12,7 +12,7 @@
     </div>
     <div class="kanban-board">
         {% for board in boards %}
-            <div class="kanban-block kanban-block-{{ board.id }} {{ board.name }}" id="{{ board.name }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="kanban-block kanban-block-{{ loop.index }} {{ board.name }}" id="{{ board.name }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <strong>{{ board.name }}</strong>
                 {% if loop.first %}
                     <div class="task-button-block">
